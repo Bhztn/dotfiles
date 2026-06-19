@@ -38,4 +38,14 @@ if [ -d "$ZEN_DIR" ]; then
     fi
 fi
 
+# 6. Configurar Wallpaper
+echo "Aplicando fondo de pantalla..."
+mkdir -p "$HOME/Pictures/Wallpapers"
+ln -sf "$DOTFILES_DIR/wallpapers/satoru.jpg" "$HOME/Pictures/Wallpapers/satoru.jpg"
+
+# Añadir la carga del wallpaper a bspwmrc para que sea persistente
+if ! grep -q "feh --bg-fill" "$DOTFILES_DIR/bspwm/bspwmrc"; then
+    echo "feh --bg-fill $HOME/Pictures/Wallpapers/satoru.jpg &" >> "$DOTFILES_DIR/bspwm/bspwmrc"
+fi
+
 echo "--- ¡Instalación completa! ---"
